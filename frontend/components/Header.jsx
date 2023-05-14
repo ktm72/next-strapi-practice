@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import useScroll from "@/hooks/onScroll";
+import React, { memo, useEffect, useMemo, useState } from "react";
+import useScroll from "@/hooks/useScroll";
 import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "./Wrapper";
@@ -14,6 +14,7 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   //show nav on scroll
+
   const show = useScroll();
 
   return (
@@ -25,13 +26,14 @@ const Header = () => {
       <Wrapper className="h-full flex justify-between items-center">
         <Link href={"/"}>
           <Image
-            src="./logo.svg"
+            src="/logo.svg"
             width={40}
             height={100}
             className="md:w-[60px]"
             alt="logo"
           />
         </Link>
+        {/* navbar  */}
         <Menu />
         {mobileMenu ? (
           <MenuMobile

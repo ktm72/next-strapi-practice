@@ -12,10 +12,10 @@ const useScroll = () => {
         } else {
           setshow("shadow-sm"); // scroll up
         }
+        setLastScrollY(window.scrollY);
       } else {
         setshow("translate-y-0"); // normal
       }
-      setLastScrollY(window.scrollY);
     };
 
     window.addEventListener("scroll", onScroll);
@@ -23,6 +23,7 @@ const useScroll = () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, [lastScrollY]);
+
   return show;
 };
 

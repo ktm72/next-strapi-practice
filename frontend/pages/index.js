@@ -1,4 +1,5 @@
 import HeroBanner from "@/components/HeroBanner";
+import ProductCard from "@/components/ProductCard";
 import Wrapper from "@/components/Wrapper";
 
 export default function Home() {
@@ -18,22 +19,20 @@ export default function Home() {
           </div>
         </div>
         {/* products grid start */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-14 px-5 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5 px-5 md:px-0 mb-10">
           {/* {products?.data?.map((product) => (
                         <ProductCard key={product?.id} data={product} />
                     ))} */}
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
-          <div>Product</div>
+
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </Wrapper>
     </main>

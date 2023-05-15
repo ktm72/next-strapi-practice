@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from "react";
-import useScroll from "@/hooks/useScroll";
+// import useScroll from "@/hooks/useScroll";
 import Image from "next/image";
 import Link from "next/link";
 import Wrapper from "./Wrapper";
@@ -14,8 +14,29 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
   //show nav on scroll
+  // const show = useScroll();
+  const [show, setshow] = useState("translate-y-0"); // normal
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const show = useScroll();
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 200) {
+        if (window.scrollY > lastScrollY) {
+          setshow("-translate-y-[80px]"); // scroll down
+        } else {
+          setshow("shadow-sm"); // scroll up
+        }
+        setLastScrollY(window.scrollY);
+      } else {
+        setshow("translate-y-0"); // normal
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [lastScrollY]);
 
   return (
     <div
@@ -52,12 +73,14 @@ const Header = () => {
           </div>
           {/* favorite icon end  */}
           {/* cart icon start  */}
-          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
-            <BsCart className="text-[15px] md:text-lg" />
-            <span className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 flex items-center justify-center absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] px-[2px] md:px-[5px]">
-              5
-            </span>
-          </div>
+          <Link href={"/cart"}>
+            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+              <BsCart className="text-[15px] md:text-lg" />
+              <span className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 flex items-center justify-center absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] px-[2px] md:px-[5px]">
+                5
+              </span>
+            </div>
+          </Link>
           {/* cart icon end  */}
           {/* mobile menu icon  */}
           <div
